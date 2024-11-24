@@ -6,6 +6,6 @@ import Routers from './Routers/Routers'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={Routers}/>
+    <RouterProvider router={Routers} />
   </StrictMode>,
 )

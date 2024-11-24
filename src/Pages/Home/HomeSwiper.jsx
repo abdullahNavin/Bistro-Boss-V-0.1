@@ -13,10 +13,12 @@ import slide2 from '../../assets/slide2.jpg'
 import slide3 from '../../assets/slide3.jpg'
 import slide4 from '../../assets/slide4.jpg'
 import slide5 from '../../assets/slide5.jpg'
+import Title from '../Share/Title';
 
 const HomeSwiper = () => {
     return (
         <div className='w-[70%] mx-auto'>
+            <Title subHeading={'From 11.00 am to 10.00pm'} heading={'ORDER ONLINE'}></Title>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={10}
