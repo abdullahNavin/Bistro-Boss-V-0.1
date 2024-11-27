@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Headroom from 'react-headroom';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Context/ContextProvider';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../Firebase/Firebase.config';
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext)
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(res => {
+
+            })
+    }
     return (
         <Headroom>
             <div className='bg-[#00000080] py-2 home'>
@@ -20,7 +30,12 @@ const Navbar = () => {
                             <li><NavLink to={'/shop'}>OUR SHOP</NavLink></li>
                             <li><NavLink to={'/cart'}>CART</NavLink></li>
                         </ul>
-                        <Link className='font-semibold uppercase ml-2' to={'/Login'}>Login</Link>
+                        {
+                            user ?
+                                <Link onClick={handleLogOut} className='font-semibold uppercase ml-2'>Logout</Link>
+                                :
+                                <Link className='font-semibold uppercase ml-2' to={'/Login'}>Login</Link>
+                        }
                     </div>
                 </div>
             </div>

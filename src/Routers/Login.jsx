@@ -1,4 +1,6 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../Firebase/Firebase.config";
 
 const Login = () => {
 
@@ -7,6 +9,11 @@ const Login = () => {
         const form = e.target
         const email = form.email.value;
         const password = form.password.value;
+        signInWithEmailAndPassword(auth, email, password)
+            .then(res => {
+                console.log(res);
+                form.reset()
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
