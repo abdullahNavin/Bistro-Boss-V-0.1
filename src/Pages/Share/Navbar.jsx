@@ -1,6 +1,6 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -20,7 +20,7 @@ const Navbar = () => {
                             <li><NavLink to={'/shop'}>OUR SHOP</NavLink></li>
                             <li><NavLink to={'/cart'}>CART</NavLink></li>
                         </ul>
-                        <a className='font-bold  ml-2'>Login</a>
+                        <Link className='font-semibold uppercase ml-2' to={'/Login'}>Login</Link>
                     </div>
                 </div>
             </div>

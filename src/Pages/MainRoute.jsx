@@ -1,16 +1,22 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Share/Navbar';
 import Footer from './Share/Footer';
 
 const MainRoute = () => {
+    const location = useLocation()
+    const TargetedLocation = location.pathname.includes('/Login') || location.pathname.includes('/SignUp')
     return (
         <div>
-            <div className='fixed w-full z-10'>
-                <Navbar></Navbar>
-            </div>
+            {
+                TargetedLocation || <div className='fixed w-full z-10'>
+                    <Navbar></Navbar>
+                </div>
+            }
             <Outlet></Outlet>
-            <Footer></Footer>
+            {
+                TargetedLocation || <Footer></Footer>
+            }
         </div>
     );
 };
