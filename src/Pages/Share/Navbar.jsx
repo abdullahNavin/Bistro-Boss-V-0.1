@@ -4,9 +4,14 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Context/ContextProvider';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../Firebase/Firebase.config';
+import { BsCart4 } from "react-icons/bs";
+import { Badge, Space } from 'antd';
+import useCartData from '../../Hook/useCartData';
+import { DNA } from 'react-loader-spinner';
 
 const Navbar = () => {
     const { user } = useContext(AuthContext)
+    const { data } = useCartData()
     const handleLogOut = () => {
         signOut(auth)
             .then(res => {
@@ -28,7 +33,15 @@ const Navbar = () => {
                             <li><NavLink to={'/dashboard'}>DASHBOARD</NavLink></li>
                             <li><NavLink to={'/menu'}>OUR MENU</NavLink></li>
                             <li><NavLink to={'/shop'}>OUR SHOP</NavLink></li>
-                            <li><NavLink to={'/cart'}>CART</NavLink></li>
+                            <li>
+                                <Link to={'/cart'}>
+                                    <Space size={'middle'}>
+                                        <Badge count={data.length}>
+                                            <BsCart4 className='text-white text-2xl' />
+                                        </Badge>
+                                    </Space>
+                                </Link>
+                            </li>
                         </ul>
                         {
                             user ?

@@ -1,9 +1,12 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/Firebase.config";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
+    const navigate = useNavigate()
+    const location = useLocation()
     const handleForm = (e) => {
         e.preventDefault()
         const form = e.target
@@ -11,7 +14,14 @@ const Login = () => {
         const password = form.password.value;
         signInWithEmailAndPassword(auth, email, password)
             .then(res => {
-                console.log(res);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Loging successfully",
+                    showConfirmButton: false,
+                    timer: 500
+                });
+                navigate(location.state || '/')
                 form.reset()
             })
     }

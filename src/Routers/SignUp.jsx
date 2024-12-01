@@ -1,9 +1,11 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateCurrentUser, updateProfile } from 'firebase/auth';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../Firebase/Firebase.config';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const navigate = useNavigate()
     const handleForm = (e) => {
         e.preventDefault()
         const form = e.target
@@ -12,7 +14,19 @@ const SignUp = () => {
         const password = form.password.value;
         createUserWithEmailAndPassword(auth, email, password)
             .then(res => {
-                console.log(res.user);
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+                    .then(res => {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Sign up successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/')
+                    })
             })
             .catch(error => {
                 console.log(error.message);
