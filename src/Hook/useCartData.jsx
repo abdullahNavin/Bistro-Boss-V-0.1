@@ -6,11 +6,11 @@ const useCartData = () => {
     const axionSecure = useIntance()
     const { user } = useAuthContext()
     const { refetch, data = [], isPending } = useQuery({
-        queryKey: ['cart'],
+        queryKey: ['cart', user?.email],
         queryFn: async () => {
             const res = await axionSecure.get(`/cart?email=${user?.email}`)
             return res.data
-        }
+        },
     })
     return { refetch, data, isPending }
 };

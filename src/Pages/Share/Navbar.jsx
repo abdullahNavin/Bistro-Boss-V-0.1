@@ -7,7 +7,6 @@ import { auth } from '../../Firebase/Firebase.config';
 import { BsCart4 } from "react-icons/bs";
 import { Badge, Space } from 'antd';
 import useCartData from '../../Hook/useCartData';
-import { DNA } from 'react-loader-spinner';
 
 const Navbar = () => {
     const { user } = useContext(AuthContext)
@@ -34,7 +33,7 @@ const Navbar = () => {
                             <li><NavLink to={'/menu'}>OUR MENU</NavLink></li>
                             <li><NavLink to={'/shop'}>OUR SHOP</NavLink></li>
                             <li>
-                                <Link to={'/cart'}>
+                                <Link to={'/dashboard/myCart'}>
                                     <Space size={'middle'}>
                                         <Badge count={data.length}>
                                             <BsCart4 className='text-white text-2xl' />

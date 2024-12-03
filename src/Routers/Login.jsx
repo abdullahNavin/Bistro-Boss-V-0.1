@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/Firebase.config";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import GoogleLogin from "../components/GoogleLogin";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ const Login = () => {
                     icon: "success",
                     title: "Loging successfully",
                     showConfirmButton: false,
-                    timer: 500
+                    timer: 3000
                 });
                 navigate(location.state || '/')
                 form.reset()
@@ -48,6 +49,7 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                     </div>
                     <div>
+                        <GoogleLogin></GoogleLogin>
                         <p>Don't have an account <Link className="text-yellow-600" to={'/SignUp'}>Sign up</Link></p>
                     </div>
                 </form>
