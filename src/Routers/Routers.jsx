@@ -14,6 +14,7 @@ import AdminHome from '../Pages/Dashboard/AdminDBoard/AdminHome';
 import ManageItem from '../Pages/Dashboard/AdminDBoard/ManageItem';
 import AddItem from '../Pages/Dashboard/AdminDBoard/AddItem';
 import AllUsers from '../Pages/Dashboard/AdminDBoard/AllUsers';
+import AdminRouter from './AdminRouter';
 
 const Routers = createBrowserRouter([
     {
@@ -68,7 +69,7 @@ const Routers = createBrowserRouter([
             },
             {
                 path:'allUsers',
-                element:<AllUsers></AllUsers>
+                element:<AdminRouter><AllUsers></AllUsers></AdminRouter>
             }
         ]
     }

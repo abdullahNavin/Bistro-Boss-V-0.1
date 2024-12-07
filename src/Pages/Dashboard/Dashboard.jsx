@@ -3,10 +3,10 @@ import { FaHome, FaListAlt, FaMendeley, FaUserAlt } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
 import { GiWallet } from "react-icons/gi";
 import { GiForkKnifeSpoon } from "react-icons/gi";
+import useAdmin from "../../Hook/useAdmin";
 
 const Dashboard = () => {
-    // TODO: change it
-    const isAdmin = true
+    const {isAdmin}= useAdmin()
     return (
         <div className="h-svh w-svw flex">
             <div className="h-full bg-[#d1a054] w-[20%] p-5">

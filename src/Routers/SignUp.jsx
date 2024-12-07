@@ -30,7 +30,7 @@ const SignUp = () => {
                         }
                         axiosPublic.post('/user', userInfo)
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 if (res.data.insertedId) {
                                     Swal.fire({
                                         position: "center",

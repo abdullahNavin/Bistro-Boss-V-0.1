@@ -11,7 +11,6 @@ const AllUsers = () => {
         queryKey: ['user'],
         queryFn: async () => {
             const res = await axiosSecure.get('/user')
-            console.log(res.data);
             return res.data
         }
     })
@@ -59,6 +58,7 @@ const AllUsers = () => {
                 axiosSecure.patch(`/user/${id}`)
                     .then(res => {
                         if (res.data.modifiedCount) {
+                            refetch()
                             Swal.fire({
                                 title: "Updated!",
                                 text: "This user is now admin.",
@@ -103,7 +103,12 @@ const AllUsers = () => {
                                     <td>
                                         {item.email}
                                     </td>
-                                    <td><button onClick={() => handleUserRole(item._id)}><FaUser></FaUser></button></td>
+                                    <td>
+                                        {
+                                            item.role === 'admin' ? 'Admin' :
+                                                <button onClick={() => handleUserRole(item._id)}><FaUser></FaUser></button>
+                                        }
+                                    </td>
                                     <th>
                                         <button onClick={() => handleDelete(item.email)} className="btn btn-ghost btn-xs">Delete</button>
                                     </th>
